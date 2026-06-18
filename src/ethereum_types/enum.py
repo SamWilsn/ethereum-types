@@ -55,6 +55,12 @@ class UintEnum(Uint, Enum, metaclass=_UintEnumType):
     [`IntEnum`]: https://docs.python.org/3/library/enum.html#enum.IntEnum
     """
 
+    def __new__(cls, value: SupportsInt) -> "UintEnum":
+        member = Uint.__new__(cls)
+        Uint.__init__(member, value)
+        member._value_ = Uint(value)
+        return member
+
     __repr__ = Enum.__repr__
 
 

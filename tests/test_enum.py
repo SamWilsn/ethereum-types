@@ -57,6 +57,9 @@ def test_enum_subclass_cast() -> None:
     actual = _MyEnum(Uint(1))
     assert actual is _MyEnum.A
 
+    assert _MyEnum.A._value_ == Uint(1)
+    assert repr(_MyEnum.A) == "<_MyEnum.A: Uint(1)>"
+
 
 def test_flag_subclass_cast() -> None:
     class _MyFlag(UintFlag):
